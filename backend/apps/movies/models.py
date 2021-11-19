@@ -32,7 +32,7 @@ class Movie(models.Model):
         'rating', blank=False, null=False
     )
     release_date = models.CharField(
-        'release date' , blank=False, null=False
+        'release date' , blank=False, null=False ,max_length=10
     )
     trailer_link = models.CharField(
         'Trailer Link', blank=False, null=False, max_length=500
