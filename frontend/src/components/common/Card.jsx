@@ -28,9 +28,9 @@ const Card = ({movie}) => {
         <>
         <div className="card">
             {console.log(movie)}
-            <div class="movie" onClick={()=>{setPopup(true)}}>
+            <div class="movie">
                 <div class="poster">
-                    <img src={movie.image} alt="newlyreleased" class="posterimg" />
+                    <img src={movie.image} onClick={()=>{setPopup(true)}} alt="newlyreleased" class="posterimg" />
                     {showLikeButton && (
                    
                         <img src={ImgHeart} alt="newlyreleased" class="unlike" onClick={() => {clickFavorite(movie)}}/>
