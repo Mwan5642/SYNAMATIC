@@ -31,7 +31,7 @@ class Movie(models.Model):
     rating = models.FloatField(
         'rating', blank=False, null=False
     )
-    release_date = models.DateField(
+    release_date = models.CharField(
         'release date' , blank=False, null=False
     )
     trailer_link = models.CharField(
