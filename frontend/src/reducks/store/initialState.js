@@ -4,6 +4,15 @@ const initialState = {
         count: 0,
         next: null,
         previous: null
+    },
+    favorites: {
+        list: []
+    },
+    movies: {
+        results: [],
+        count: 0,
+        next: null,
+        previous: null
     }
 };
 

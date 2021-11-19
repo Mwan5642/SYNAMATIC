@@ -1,141 +1,519 @@
-/*
-Common
-************************************/
+/*//////////// COMMON /////*/
 
-html,
 body {
+    margin: 0;
+    background: #141413; 
+    font-family: 'Spartan', sans-serif;
+    font-weight: 250px;
+    font-size: 20px;
     height: 100%;
-    font-family: sans-serif;
+    overflow: auto;
 }
 
-.content {
-    width: 600px;
-    height: 100%;
+.card{
     margin: 0 auto;
-    border-left: 1px solid #ccc;
-    border-right: 1px solid #ccc;
+    width: fit-content;
 }
 
-@media screen and (max-width: 500px) {
+* {
+    padding: 0;
+}
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/*
-Posts
-************************************/
 
-.post_form {
-    padding: 20px;
-    border-bottom: 1px solid #ccc;
+.movies {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    height: auto;
+    width: 80vw;
+    margin: 70px;
+    gap: 80px;
 }
 
-.post_form input {
-    width: 96%;
-    margin-bottom: 10px;
+@media screen and (max-width: 1100px) {
+    .movies {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .movies {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .movies {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* Navbar //////////////////*/
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid white;
+    height: 60px;
+    width: 100vw;
+    position: absolute;
+}
+
+header {
+    background: linear-gradient(rgb(41,40,40), rgb(0,0,0,0));
+    border-bottom: 1px solid white;
+    height: 60px;
+    width: 100vw;
+    position: absolute;
+    z-index: 2;
+}
+
+.pt {
+    padding-top: 60px;
+}
+
+.p-10 {
+    padding: 5px;
+    margin-bottom: 8px;
+}
+img .logo {
+    float: left;
+    width: auto;
+    height: 100px;
+    vertical-align: top;
+}
+
+
+nav a {
+    color: grey;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    display: inline-block;
+    padding-top: 25px;
+    position: relative;
+    top: -10px;
+    left: -20px;
+}
+
+nav a:hover {
+    color: black;
+}
+
+
+.cat {
     padding: 10px;
-    border: 1px solid #ccc;
+
+}
+.dropdown {
+    position: relative;
+    top:12px;
+    left: -5px;
+}
+.fav {
+    padding-top: 18px;
 }
 
-.post_form textarea {
-    width: 96%;
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
+.heart {
+    position: relative;
+    left: 10px;
+    top: 3px;
 }
 
-.post_form .upload-area {
-    width: 96%;
-    margin-bottom: 10px;
+
+.section1 {
+    height: 100vh;
+}
+
+.section2 {
+    height: 100vh;
+}
+
+h1 {
+    color: lightgrey;
+    font-style: Verdana;
+    font-weight: 12px;
+    padding-left: 10px;
+    padding-top: 20px;
+}
+
+.secondheading {
+    color: lightgrey;
+    font-style: Verdana;
+    font-weight: 12px;
+    padding-left: 10px;
+    padding-top: 50px;
+}
+.search-box{
+    position: relative;
+    width:fit-content;
+    padding: 3px;
+    left: -25px;
+}
+.magnify{
+    position: absolute;
+    right: 5px;
+    height: 20px;
+    padding: 2px;
+}
+.search-txt {
+    background-color: transparent;
+    border-radius: 10px;
+    border-color: white;
+}
+
+
+/* .trailer {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+} */
+
+
+
+.showdate {
+    color: lightgrey;
+    position: relative;
+    font-size: 15px;
+}
+
+/*///////header //////////*/
+header .logo img {
+    height: 50px;
     padding: 10px;
-    border: 1px solid #ccc;
+}
+
+header .menus {
     text-align: center;
 }
-
-.post_form button {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    cursor: pointer;
+.searchbox {
+    position: relative;
+    width: fit-content;
+    padding: 3px;
+}
+.searchbox img {
+    position: absolute;
+    right: 0;
+    width: 25px;
+    padding: 4px;
+}
+.searchbox input {
+    background-color: rgb(0, 0, 0, 0);
+    width: 200px;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid rgb(224, 224, 224);
 }
 
-.upload-image {
+header .menus .category img {
+    width: 35px;
+}
+header .menus .favorites img {
+    width: 15px;
+}
+
+header .sp-menu {
+    display: none;
+}
+header .sp-logo {
+    display: none;
+}
+.sp-search {
+    display: none;
+}
+.searchpopup {
+    position: absolute;
+    top: 0px;
+    right: -60px;
+}
+.togglemenu {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    background-color: rgb(0, 0, 0, 0.9);
+    border-bottom-right-radius: 20px;
+    color: lightgrey;
+}
+@media screen and (max-width: 800px) {
+    header .menus {
+        display: none;
+    }
+    header .logo {
+        display: none;
+    }
+    header .sp-menu {
+        margin: 10px;
+        height: 50px;
+        display: block;
+    }
+    header .sp-menu.down {
+        transform: rotate(90deg);
+    }
+    header .sp-logo {
+        display: block;
+        height: 50px;
+        margin: 10px;
+    }
+    .sp-search {
+        display: block;
+        margin: 20px;
+        width: 30px;
+    }
+}
+/*/////// cover /////////*/
+.watchtrailer {
+    height:50px;
+}
+
+.playtrailer2 {
+    position: relative;
+    left: -55px;
+}
+
+
+.cover .description {
+    color: lightgrey;
+    bottom: 0;
+    height: 100px;
+    font-size: 19px;
+    padding-top: 20px;
+}
+
+.coverdetails {
+    position: absolute;
+    bottom: 0;
     width: 50%;
 }
 
-.posts ul {
-    padding: 0;
+.cover .date {
+    color: lightgrey;
+    inline-size: 140px;
 }
-
-.posts li {
-    position: relative;
-    display: flex;
-    border-bottom: 1px solid #ccc;
-    padding: 20px 40px;
-    list-style: none;
-}
-
-.posts li .menu_icon {
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    right: 30px;
-    top: 18px;
-    cursor: pointer;
-}
-
-.posts li .menu {
-    position: absolute;
-    top: 40px;
-    right: 15px;
-    border: 1px solid #ccc;
-    background-color: white;
-    padding: 10px 15px;
-    font-size: 13px;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.posts li img {
+.cover {
     width: 100%;
+    height: 90%;
+    position: relative;
 }
-
-.posts li .menu a {
-    text-decoration: none;
+.cover .sp-backgroundcover {
+    display: none;
 }
-
-.posts li .logo {
-    flex-basis: 15%;
+.cover .backgroundcover {
+    width: 100%;
+    height: 90vh;
+    object-fit: cover;
 }
-
-.posts li .logo img {
+.cover .gradient {
+    background: linear-gradient(rgb(41, 40, 40, 0.6) 10%, rgb(0, 0, 0, 0) 50%, rgb(41, 40, 40));
+    position: absolute;
+    height: 90%;
+    width: 100%;
+    z-index: 2;
+}
+.cover .gradient .coverdetails {
+    position: absolute;
+    bottom: 0;
+}
+.cover .gradient .coverdetails .watchtrailer {
+    background-color: rgb(20, 20, 19);
+    height: 35px;
+    border-radius: 20px;
+}
+.cover .gradient .watchtrailer img {
+    height: 35px;
+}
+.cover .gradient .coverdetails .cover-description {
     width: 60%;
 }
-
-.posts li .name_body {
-    flex-basis: 85%;
+.cover .gradient .coverdetails .date {
+    font-size: 20px;
+    margin: 0;
+}
+.cover .gradient .coverdetails .cover-description {
+    color: rgb(224, 224, 224, 0.8);
+}
+@media screen and (max-width: 800px) {
+    .cover {
+        height: 105vh;
+    }
+    .cover .backgroundcover {
+        display: none;
+    }
+    .cover .sp-backgroundcover {
+        display: block;
+        width: 100%;
+        height: 90vh;
+        object-fit: cover;
+    }
+    .cover .sp-coverdetails {
+        flex-direction: column;
+        width: fit-content;
+        margin: auto;
+        text-align: center;
+    }
+    .cover .gradient .coverdetails .cover-description {
+        width: 100%;
+    }
+    .cover .gradient .coverdetails {
+        top: 75vh;
+    }
 }
 
-.posts li .name_body .name {
-    font-weight: bold;
-    margin-bottom: 10px;
+/*///////popup //////////*/
+
+.popupbox {
+    position: fixed;
+    background-color: rgba(250, 242, 242, 0.5);
+    left: 0;
+    right: 0;
+    z-index: 4;
+    height: 100%;
+    top: 0;
+}
+.popupbox .popup {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.popupbox .box {
+    position: absolute;
+    top: 40px;
+    width: 84%;
+    left: 8%;
+    height: 80%;
+}
+.popupbox .popup .box .coverimage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.popupbox .popup .close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    height: 30px;
+}
+.popupbox .popup .popup-content {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30%;
+    background: linear-gradient(rgb(0, 0, 0, 0), rgb(0, 0, 0, 1));
+}
+/*///////Section 1 //////////*/
+
+.Newly-Released {
+    float: left;
+    padding: 5px;
+    display: contents;
+    
+    
+
 }
 
-.posts li .name_body .body {
-    margin: 10px 0px;
+.newlyreleased {
+    width: 20%;
+    display: contents;
+
 }
 
-.posts li .name_body .datetime {
-    color: gray;
-    margin-bottom: 10px;
+
+.poster{
+    position: relative;
+    height: fit-content;
+    width: fit-content;
+}
+.movies .posterimg {
+    width: 250px;
+    height:350px;
+    object-fit: cover;
+    margin: 0px auto;
 }
 
-.no-post {
-    text-align: center;
+.movies .title {
+    color: lightgrey;
+    top: -100px;
+    padding-top: 20px;
 }
 
-.no-post p {
-    margin: 0px 0px;
+.movies .ratingnumber {
+    color: lightgrey;
+    left: 48px;
+    top: -160px;
 }
 
-.loading {
-    text-align: center;
+.rating {
+    top: -100px;
 }
+
+.movies .playtrailer {
+    left: 200px;
+    top: -225px;
+    width: 10vw;
+    height: auto;
+}
+
+.movies .playtrailer2 {
+    padding-left: 135px;
+    padding-top: 5px;
+    width: 10vw;
+    height: auto;
+    
+}
+
+.unlike {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 40px;
+    height: auto;
+}
+
+.movie {
+    height: 340px;
+    width: 250px;
+}
+
+/*///////Section 2 //////////*/
+
+.Coming-Soon {
+    float: left;
+    width: 100%;
+    height: auto;
+    margin-bottom: 150px;
+}
+
+@media screen and (max-width: 1100px) {
+}
+
+/*///////Category Page //////////*/
+.genre {
+    position:relative;
+    top: 100px;
+}
+/*///// Footer //////////////*/
+
+.footer {
+    background-color: black;
+    position: relative;
+    height: 60px;
+    clear: both;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    margin-top: 100px;
+}
+
+.logo2 {
+    float: left;
+    width: auto;
+    height: 100%;
+    
+}
+
+

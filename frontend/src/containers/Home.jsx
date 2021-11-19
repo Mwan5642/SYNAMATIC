@@ -1,87 +1,115 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import Loading from '../assets/img/loading.gif';
-import postImage from '../assets/img/newspaper-icon-png.jpg';
-import PostForm from '../components/Posts/PostForm';
-import Post from '../components/Posts/Post';
-import { fetchPosts } from '../reducks/posts/operations';
-import { getPosts } from '../reducks/posts/selectors';
+import React, {useState, useEffect} from 'react'
+import Header from '../components/common/Header';
+import { useSelector } from 'react-redux';
+import Footer from '../components/common/Footer';
+import ImgCover from '../assets/img/007.png';
+import ImgButton from '../assets/img/watchtrailer.png';
+import Imgcover from '../assets/img/sp-backgroundcover.png';
+//*import Imgbutton from '../assets/img/sp-cover.png';
+import { getMovies } from '../reducks/movies/selectors';
+import queryString from 'query-string';
+import API from '../API';
+import Card from '../components/common/Card';
 
+
+const api = new API();
 const Home = () => {
-    const dispatch = useDispatch();
+    const parsed = queryString.parse(window.location.search);
+    const [moviesComingSoon, setMoviesCommingSoon] = useState(null);
+    const [moviesNewReleased, setMoviesNewReleased] = useState(null);
     const selector = useSelector(state => state);
-    const posts = getPosts(selector);
-    let [page, setPage] = useState(1);
-    const [isLoading, setIsLoading] = useState(false);
+    const movies = getMovies(selector);
 
     useEffect(() => {
-        dispatch(fetchPosts({ page }));
-        // eslint-disable-next-line
-    }, []);
-
-    // Infinite Scroll Pagination Flow
-    const observer = useRef();
-
-    // Reference to a very last post element
-    const lastPostElement = useCallback(
-        node => {
-            if (isLoading) return;
-            // Disconnect reference from previous element, so that new last element is hook up correctly
-            if (observer.current) {
-                observer.current.disconnect();
-            }
-
-            // Observe changes in the intersection of target element
-            observer.current = new IntersectionObserver(async entries => {
-                // That means that we are on the page somewhere, In our case last element of the page
-                if (entries[0].isIntersecting && posts.next) {
-                    // Proceed fetch new page
-                    setIsLoading(true);
-                    setPage(++page);
-                    await dispatch(fetchPosts({ page }));
-                    setIsLoading(false);
-                }
+        api.getMovies({ release_type: 'Coming Soon' })
+            .then(movies => {
+                setMoviesCommingSoon(movies);
+            })
+            .catch(error => {
+                alert('Failed to connect API: /movies/');
             });
-
-            // Reconnect back with the new last post element
-            if (node) {
-                observer.current.observe(node);
-            }
-        },
-        // eslint-disable-next-line
-        [posts.next]
-    );
-
+        api.getMovies({ release_type: 'Newly Released' })
+            .then(movies => {
+                setMoviesNewReleased(movies);
+            })
+            .catch(error => {
+                alert('Failed to connect API: /movies/');
+            });
+    }, []);
     return (
-        <section className="content">
-            <PostForm />
-            <section className="posts">
-                {posts.results.length > 0 ? (
-                    <ul>
-                        {posts.results.map((post, index) => {
-                            return (
-                                <Post
-                                    ref={index === posts.results.length - 1 ? lastPostElement : null}
-                                    key={post.id}
-                                    post={post}
-                                />
-                            );
-                        })}
-                    </ul>
-                ) : (
-                    <div className="no-post">
-                        <img width="72" src={postImage} alt="icon" />
-                        <p>No posts here yet...</p>
-                    </div>
-                )}
-                {isLoading && (
-                    <div className="loading">
-                        <img src={Loading} className="" alt="" />
-                    </div>
-                )}
-            </section>
-        </section>
-    );
-};
+    <>
 
-export default Home;
+            <Header />
+
+            <div class="cover">
+                <img src={ImgCover} alt="trailer" class="backgroundcover" />
+                <img src={Imgcover} class="sp-backgroundcover"/>
+                <div class="coverdetails sp-coverdetails">
+                    <div class="row sp-coverdetails">
+                        <img src={ImgButton} alt="watchtrailer" class="watchtrailer" />
+                        <div class="date">November 27 In Cinemas</div>
+                    </div>
+                    <div class="description cover-description">
+                        James Bond has left active service. His peace is short-lived when Felix Leiter,
+                        an old friend from the CIA, turns up asking for help, leading Bond onto
+                        the trail of a mysterious villain armed with dangerous new technology.
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="section1">
+                <h1>Newly Released</h1>
+                <div class="Newly-Released">
+                    <div class="newlyreleased">
+                       
+                        {moviesNewReleased && moviesNewReleased.results.length > 0 ? (
+                    <div class="movies">
+                        {moviesNewReleased.results.map(movie => (
+                            <Card movie={movie} />
+                        ))}
+                    </div>
+                ) : (
+                    <div class="no-post">
+                        <p>No movies here yet...</p>
+                    </div>
+                )}    
+
+                         
+                
+
+
+
+                    </div>
+
+                </div>
+
+
+                <div id="section2">
+                    <h1 class="secondheading">Coming Soon</h1>
+                    <div class="Coming-Soon">
+                    {moviesComingSoon && moviesComingSoon.results.length > 0 ? (
+                    <div class="movies">
+                        {moviesComingSoon.results.map(movie => (
+                            <Card movie={movie} />
+                        ))}
+                    </div>
+                ) : (
+                    <div class="no-post">
+                        <p>No movies here yet...</p>
+                    </div>
+                )}
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+<Footer/>
+</>
+    )
+}
+
+export default Home
