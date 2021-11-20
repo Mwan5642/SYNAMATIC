@@ -10,7 +10,7 @@ const Category = () => {
     const [categoryDrama, setCategoryDrama] = useState(null);
     const [categoryHorror, setCategoryHorror] = useState(null);
     useEffect(() => {
-        api.getMovies({ category_id: '2' })
+        api.getMovies({ category_id: '1' })
             .then(movies => {
                 setCategoryAction(movies);
             })
@@ -31,7 +31,7 @@ const Category = () => {
             .catch(error => {
                 alert('Failed to connect API: /movies/');
             });
-        api.getMovies({ category_id: '1' })
+        api.getMovies({ category_id: '2' })
             .then(movies => {
                 setCategoryHorror(movies);
             })

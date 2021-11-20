@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-var baseURL='https://synamatic-backend.herokuapp.com';
-// baseURL = 'http://127.0.0.1:8000';
+// var baseURL='https://synamatic-backend.herokuapp.com';
+var baseURL = 'http://127.0.0.1:8000';
 const api = axios.create({
     baseURL: baseURL,
     headers: {

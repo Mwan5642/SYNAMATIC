@@ -44,7 +44,7 @@ const Home = () => {
             <div class="cover">
                 <img src={ImgCover} alt="trailer" class="backgroundcover" />
                 <img src={Imgcover} class="sp-backgroundcover"/>
-                <div class="coverdetails sp-coverdetails">
+                <div class="coverdetails sp-coverdetails gradient">
                     <div class="row sp-coverdetails">
                         <img src={ImgButton} alt="watchtrailer" class="watchtrailer" />
                         <div class="date">November 27 In Cinemas</div>

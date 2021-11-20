@@ -1,5 +1,7 @@
 import React from 'react'
 import ImgClose from '../assets/img/close.png'
+import ImgButton from '../assets/img/watchtrailer.png';
+import ImgStar from '../assets/img/star_rating.png';
 const PopUp = ({trigger,popup,movie}) => {
     return trigger?(
         <section class="popupbox">
@@ -7,21 +9,21 @@ const PopUp = ({trigger,popup,movie}) => {
             <img class="close" src={ImgClose} onClick={()=>{popup(false)}} alt="" />
             <div class="box">
                 <img class="coverimage" src={movie.image} alt="" />
-                <div class="popup-content">
-                    <div class="row sp-coverdetails">
+                <div class="popup-content gradient">
+                    <div class="row popupdetails sp-coverdetails gradient">
                         <div class="trailer m-10 row">
-                            <img class="playtrailor" src="images/button1.png" alt="" />
-                            <div class="p-10">Watch Trailer</div>
+                            <img class="popupwatchtrailer" src={ImgButton} alt="" />
+                            <img class="star" src={ImgStar} alt=""/>
+                            <div class="ratenumber"> 4.6/5 </div>
                         </div>
                         <div class="m-10">
-                            <p class="date">October 1st</p>
-                            In cinemas
+                            <div class="popupdate">
+                                October 1st In Cinemas
+                            </div>
                         </div>
                     </div>
-                    <div class="cover-description m-10">
-                        <p>
+                    <div class="popdescription cover-description m-10">
                            {movie.description}
-                        </p>
                     </div>
                 </div>
             </div>

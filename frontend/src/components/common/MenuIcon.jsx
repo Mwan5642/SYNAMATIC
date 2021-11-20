@@ -37,7 +37,7 @@ const MenuIcon = () => {
                             Horror
                         </div>
                     </div>
-                    <div class="favourites m-15 row" onClick={() => dispatch(push('/favourites'))}>
+                    <div class="favorites m-15 row" onClick={() => dispatch(push('/favorites'))}>
                         <div class="p-10">Favorites</div>
                     </div>
                 </div>

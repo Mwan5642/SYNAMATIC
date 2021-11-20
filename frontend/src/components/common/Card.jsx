@@ -41,7 +41,7 @@ const Card = ({movie}) => {
                 </div>
                 <div class="content">
                     <div class="title">{movie.name}</div>
-                    <div class="row">
+                    <div class="row card-content">
                         <img src={ImgStar} alt="rating" class="rating" />
                         <div class="ratingnumber">4.5 / 5</div>
                         <img src={ImgPlay} alt="play_trailer" class="playtrailer" />
